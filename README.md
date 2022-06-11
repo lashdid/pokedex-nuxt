@@ -1,4 +1,4 @@
-# Pokedex with Vue
+# Pokedex with Nuxt
 
 Just a simple website to search for pokemon. API from https://pokeapi.co/
 
