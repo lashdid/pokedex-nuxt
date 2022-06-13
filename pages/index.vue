@@ -23,7 +23,7 @@ export default Vue.extend({
     title: "Nuxt Pokedex",
   },
   async created() {
-    await this.getItems(baseUrl);
+    this.firstItems = await this.getItems(baseUrl);
     this.getAllItems();
   },
   data() {
@@ -34,9 +34,9 @@ export default Vue.extend({
       name: string;
       order: number;
     }
-    let firstItems: ItemProps[] = [];
     let items: ItemProps[] = [];
     let fullItems: ItemProps[] = [];
+    let firstItems: ItemProps[] = [];
     return { items, fullItems, firstItems, nextUrl, prevUrl };
   },
   methods: {
@@ -74,7 +74,6 @@ export default Vue.extend({
       this.prevUrl = res.previous;
       const pokemons = await this.mapItems(res.results);
       this.items = await Promise.all([...pokemons]);
-      this.firstItems = this.items;
       return this.items;
     },
     async getAllItems() {
